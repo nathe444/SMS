@@ -1,6 +1,8 @@
+"use client";
 import { role } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   {
@@ -118,6 +120,9 @@ const menuItems = [
 ];
 
 const Menu = () => {
+
+  const url = usePathname();
+
   return (
     <div>
       {menuItems.map((menuItem, index) => {
@@ -133,7 +138,7 @@ const Menu = () => {
                     <Link
                       key={index}
                       href={menu.href}
-                      className="flex items-center md:justify-center justify-start lg:justify-start text-gray-500 py-[7px] px-4 md:px-2 gap-4 hover:bg-lamaSkyLight rounded-md"
+                      className={`${url === `${menu.href}` ? "bg-lamaSkyLight" : ""} flex items-center md:justify-center justify-start lg:justify-start text-gray-500 py-[7px] px-4 md:p-2 gap-4 hover:bg-lamaSkyLight rounded-md m-1`}
                     >
                       <Image
                         src={menu.icon}
